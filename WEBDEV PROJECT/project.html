@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Simple BMI Calculator</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .box {
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #aaa;
+        width: 300px;
+        text-align: center;
+      }
+      input,
+      button {
+        width: 90%;
+        padding: 10px;
+        margin: 10px 0;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      button {
+        background-color: #28a745;
+        color: white;
+        border: none;
+      }
+      button:hover {
+        background-color: #218838;
+      }
+      #output {
+        margin-top: 15px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>BMI Calculator</h2>
+      <input type="number" id="height" placeholder="Height in cm" />
+      <input type="number" id="weight" placeholder="Weight in kg" />
+      <button onclick="calculateBMI()">Calculate</button>
+      <div id="output"></div>
+    </div>
+
+    <script>
+      function calculateBMI() {
+        var h = parseFloat(document.getElementById("height").value);
+        var w = parseFloat(document.getElementById("weight").value);
+        var out = document.getElementById("output");
+
+        if (h > 0 && w > 0) {
+          var bmi = (w / ((h / 100) * (h / 100))).toFixed(2);
+          var grade = "";
+          var message = "";
+
+          if (bmi < 18.5) {
+            grade = "Underweight";
+            message =
+              "You're doing great! Stay strong and nourish yourself well 💪";
+          } else if (bmi < 24.9) {
+            grade = "Normal weight";
+            message = "Perfect! Keep up your healthy habits 🌟";
+          } else if (bmi < 29.9) {
+            grade = "Overweight";
+            message = "You're powerful! Small steps can lead to big changes 🚶‍♂️";
+          } else {
+            grade = "Obese";
+            message =
+              "You're capable of amazing progress! Start gently and stay consistent 🎯";
+          }
+
+          out.innerHTML =
+            "Your BMI is <b>" +
+            bmi +
+            "</b><br>Grade: <b>" +
+            grade +
+            "</b><br>" +
+            message;
+        } else {
+          out.innerHTML = "Please enter valid height and weight.";
+        }
+      }
+    </script>
+  </body>
+</html>
